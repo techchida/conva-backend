@@ -225,7 +225,7 @@ widgetArea.addEventListener("submit", async (e) => {
   data.forEach((value, key) => (object[key] = value));
   formdata = JSON.stringify(object);
 
-  const response = await fetch("http://localhost:4000/leads/new", {
+  const response = await fetch("https://conva.onrender.com/leads/new", {
     method: "POST",
     body: formdata,
     headers: {
