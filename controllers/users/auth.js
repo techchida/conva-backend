@@ -24,7 +24,7 @@ app.post("/", async (req, res) => {
 
     payload = payload.value;
 
-    if (await !USERS.exists({ email: payload.email }))
+    if ((await USERS.exists({ email: payload.email })) === null)
       return res.status(400).json({ message: "invalid credentials provided" });
 
     const person = await USERS.findOne({ email: payload.email });
