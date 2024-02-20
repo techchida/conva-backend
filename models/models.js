@@ -64,6 +64,10 @@ const USERS = mongoose.model(
 const CAMPAIGNS = mongoose.model(
   "campaigns",
   new mongoose.Schema({
+    campaign: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
