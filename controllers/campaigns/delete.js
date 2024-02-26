@@ -3,17 +3,12 @@ const Joi = require("joi");
 const { CAMPAIGNS } = require("../../models/models");
 const app = express();
 
-app.delete("/", async (req, res) => {
+app.delete("/:campaignID", async (req, res) => {
+  console.log(req.body);
   try {
-    let payload = Joi.object({
-      id: Joi.string().required().messages({
-        "string.empty": "campaign id is required",
-      }),
-    }).validate(req.body);
-
     if (
       (await CAMPAIGNS.exists({
-        _id: payload.value.id,
+        _id: req.params.campaignID,
         owner: req.user.id,
       })) == null
     )
@@ -21,12 +16,9 @@ app.delete("/", async (req, res) => {
         .status(400)
         .json({ message: "Campaign reconciliation failed" });
 
-    if (payload.error)
-      return res.status(400).json({
-        message: payload.error.details[0].message,
-      });
-
-    let deleteCampaign = await CAMPAIGNS.findByIdAndDelete(payload.value.id);
+    let deleteCampaign = await CAMPAIGNS.findByIdAndDelete(
+      req.params.campaignID
+    );
 
     return res.json({
       message: "Campaign deleted succesfully",

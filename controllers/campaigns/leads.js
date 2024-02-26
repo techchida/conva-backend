@@ -15,6 +15,11 @@ app.get("/:campaignID", async (req, res) => {
         message: "Failed to resolve campaign authorization",
       });
 
+    const campaign = await CAMPAIGNS.findOne({
+      _id: req.params.campaignID,
+      owner: req.user.id,
+    }).lean();
+
     const options = {
       page: req.query?.page || 1,
       limit: 10,
@@ -37,7 +42,22 @@ app.get("/:campaignID", async (req, res) => {
       options
     );
 
-    return res.send(result);
+    let allLeads = await LEADS.find({
+      campaignID: req.params.campaignID,
+    }).lean();
+
+    let stats = [];
+
+    for (i = 0; i <= 5; i++) {
+      stats.push(allLeads.filter((lead) => lead.vote == i).length);
+    }
+
+    return res.send({
+      ...result,
+      method: campaign.type,
+      stats,
+      title: campaign.campaign,
+    });
   } catch (error) {
     console.error(error.stack);
     return res.status(400).json({

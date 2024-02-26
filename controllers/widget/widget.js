@@ -225,7 +225,7 @@ widgetArea.addEventListener("submit", async (e) => {
   data.forEach((value, key) => (object[key] = value));
   formdata = JSON.stringify(object);
 
-  const response = await fetch("https://conva.onrender.com/leads/new", {
+  const response = await fetch("${process.env.BASEURL}/leads/new", {
     method: "POST",
     body: formdata,
     headers: {
@@ -256,7 +256,7 @@ widgetArea.addEventListener("submit", async (e) => {
 
       `);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.send({
       error: "failed to initialize",
     });

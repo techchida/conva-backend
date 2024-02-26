@@ -26,7 +26,6 @@ app.post("/", async (req, res) => {
       comment: Joi.boolean().required(),
     }).validate(req.body);
 
-    console.log(payload);
     if (payload.error)
       return res.status(400).json({
         message: payload.error.details[0].message,

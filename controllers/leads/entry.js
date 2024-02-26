@@ -6,11 +6,10 @@ const moment = require("moment");
 
 app.post("/", async (req, res) => {
   try {
-    console.log(req.body);
     let payload = Joi.object({
       name: Joi.string().min(0).max(30),
       email: Joi.string().email({ tlds: { allow: false } }),
-      comment: Joi.string().min(0).max(120),
+      comment: Joi.string().min(0).max(300),
       vote: Joi.string().min(0).max(120),
       option: Joi.string().min(0).max(120),
       campaignID: Joi.string().required().min(12).max(120),

@@ -11,6 +11,8 @@ app.post("/", async (req, res) => {
   try {
     let payload = Joi.object({
       email: Joi.string()
+        .lowercase()
+        .trim()
         .required()
         .email({ tlds: { allow: false } })
         .message("Please use a valid email address"),

@@ -9,17 +9,21 @@ app.use(cors(corsConfig));
 app.use(express.json());
 
 const router = require("./router/router");
+app.use((req, res, next) => {
+  console.log(req.url);
+  return next();
+});
 app.use("/", router);
 
 // if route does not exist redirect to 404 page
-app.use((req, res, next) => {
+app.use((req, res) => {
   return res.status(404).json({
     message: "this resource does not exist or has been moved",
   });
 });
 
 // if error occurs redirect to 500 page
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err);
   return res.status(500).json({
     message: "oops! Something went terribly wrong - :) ",

@@ -1,6 +1,6 @@
 const express = require("express");
 const Joi = require("joi");
-const { CAMPAIGNS } = require("../../models/models");
+const { CAMPAIGNS, LEADS } = require("../../models/models");
 const app = express();
 
 app.get("", async (req, res) => {
@@ -27,7 +27,16 @@ app.get("", async (req, res) => {
       options
     );
 
-    return res.send(result);
+    const campaigns = new Array();
+
+    for (i = 0; i < result.campaigns.length; i++) {
+      leads = await LEADS.countDocuments({
+        campaignID: result.campaigns[i]._id.toString(),
+      });
+      campaigns[i] = { ...result.campaigns[i]._doc, leads: leads };
+    }
+
+    return res.status(200).json({ ...result, campaigns });
   } catch (error) {
     console.error(error.stack);
     return res.status(400).json({
@@ -35,5 +44,7 @@ app.get("", async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = app;

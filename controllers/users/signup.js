@@ -11,9 +11,12 @@ app.post("/", async (req, res) => {
   try {
     let payload = Joi.object({
       email: Joi.string()
+        .lowercase()
+        .trim()
         .email({ tlds: { allow: false } })
         .message("Please use a valid email address"),
       password: Joi.string()
+        .trim()
         .pattern(
           new RegExp(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{6,30}$/)
         )
