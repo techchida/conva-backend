@@ -17,7 +17,7 @@ module.exports = {
   //     callback(new Error("Origin Not allowed by CORS : " + origin));
   //   }
   // },
-  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  methods: ["POST", "PUT", "GET", "DELETE", "HEAD"],
   credentials: true,
   allowedHeaders: "Content-Type, Authorization, access_key",
 };
