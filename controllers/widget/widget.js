@@ -27,7 +27,7 @@ app.get("/:campaignID", async (req, res) => {
       });
     };
 
-    loadStyle("https://cdn.jsdelivr.net/gh/techchida/conva-backend/public/conva.css").then(
+    loadStyle("https://cdn.jsdelivr.net/gh/techchida/conva-backend@latest/public/conva.css").then(
     ()=>{
       
     const configs = ${configs}
