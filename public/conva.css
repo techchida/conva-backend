@@ -264,7 +264,7 @@
 }
 
 textarea.xx-inputarea{
-    resize:none;
+    resize:none !important;
 }
 
 .xx-input-area:focus {
