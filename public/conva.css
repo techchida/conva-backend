@@ -30,6 +30,9 @@
     display: block;
 }
 
+.xx-title {
+    font-weight: 800;
+}
 .xx-title,
 .xx-subtitle {
     text-align: center;
@@ -127,7 +130,7 @@
 
 .xx-emoji {
     background: url('./assets/emoji1.svg');
-    padding: 20px;
+    padding: 15px;
     background-size: cover;
     cursor: pointer;
     filter: grayscale(100%);
@@ -246,7 +249,7 @@
 .xx-input-area {
     border: 1px solid #dfe2e7;
     display: block;
-    width: calc(100% - 30px);
+    width: 100%;
     margin-bottom: 15px;
     padding: 12px 15px;
     font-family: "Inter", sans-serif;
