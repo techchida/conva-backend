@@ -130,7 +130,7 @@
 
 .xx-emoji {
     background: url('./assets/emoji1.svg');
-    padding: 15px;
+    padding: 20px;
     background-size: cover;
     cursor: pointer;
     filter: grayscale(100%);
@@ -247,11 +247,12 @@
 }
 
 .xx-input-area {
-    border: 1px solid #dfe2e7;
+    border: 1px solid #dfe2e74a;
     display: block;
+    background:#dfe2e74a;
     width: 100%;
     margin-bottom: 15px;
-    padding: 12px 15px;
+    padding: 10px 15px;
     font-family: "Inter", sans-serif;
     color: #101828;
     font-size: 15px;
@@ -261,6 +262,10 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     /* outline-color: #0390fc; */
+}
+
+textarea.xx-inputarea{
+    resize:none;
 }
 
 .xx-input-area:focus {
